@@ -27,6 +27,9 @@ namespace v0903
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            Point mp = MousePosition;
+            mp = PointToClient(mp);
+
             label1.Left += vx;
             label1.Top += vy;
 
@@ -45,6 +48,11 @@ namespace v0903
             if (label1.Top >= ClientSize.Height)
             {
                 vy = -Math.Abs(vy) * 11 / 10;
+            }
+
+            if ((mp.X >= label1.Left) && (mp.X < label1.Right) && (mp.Y >= label1.Top) && (mp.Y < label1.Bottom))
+            {
+                timer1.Enabled = false;
             }
         }
     }
